@@ -37,6 +37,10 @@ func Potrf(a blas64.Symmetric) (t blas64.Triangular, ok bool) {
 	return
 }
 
+func Potrs(t blas64.Triangular, b blas64.General) {
+	lapack64.Dpotrs(t.Uplo, t.N, b.Cols, t.Data, t.Stride, b.Data, b.Stride)
+}
+
 // Gecon estimates the reciprocal of the condition number of the n×n matrix A
 // given the LU decomposition of the matrix. The condition number computed may
 // be based on the 1-norm or the ∞-norm.
